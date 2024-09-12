@@ -1,3 +1,4 @@
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 package com.splanet.splanet;
 
 import org.springframework.boot.SpringApplication;
