@@ -13,28 +13,47 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+<<<<<<< HEAD
 
 import java.time.LocalDateTime;
+=======
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+>>>>>>> weekly/11
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+<<<<<<< HEAD
+=======
+@Slf4j
+>>>>>>> weekly/11
 @Component
 @RequiredArgsConstructor
 public class NotificationScheduler {
 
+<<<<<<< HEAD
+=======
+    private static final ZoneId ZONE_ID_SEOUL = ZoneId.of("Asia/Seoul");
+>>>>>>> weekly/11
     private final PlanRepository planRepository;
     private final FcmTokenRepository fcmTokenRepository;
     private final NotificationLogRepository notificationLogRepository;
     private final NotificationService notificationService;
     private final QueryPerformanceService queryPerformanceService;
 
+<<<<<<< HEAD
 
     @Scheduled(fixedRate = 60000)
     public void sendScheduledNotifications() {
         LocalDateTime now = LocalDateTime.now();
+=======
+    @Scheduled(fixedRate = 60000)
+    public void sendScheduledNotifications() {
+        LocalDateTime now = LocalDateTime.now(ZONE_ID_SEOUL);
+>>>>>>> weekly/11
 
         List<Plan> upcomingPlans = planRepository.findUpcomingPlans(now);
 
@@ -67,7 +86,11 @@ public class NotificationScheduler {
 
             for (FcmToken fcmToken : fcmTokens) {
                 if (Boolean.TRUE.equals(fcmToken.getIsNotificationEnabled())) {
+<<<<<<< HEAD
                     LocalDateTime notificationTime = plan.getStartDate().minusMinutes(fcmToken.getNotificationOffset());
+=======
+                    LocalDateTime notificationTime = plan.getStartDate().atZone(ZONE_ID_SEOUL).toLocalDateTime().minusMinutes(fcmToken.getNotificationOffset());
+>>>>>>> weekly/11
 
                     if (notificationTime.isAfter(now.minusMinutes(5)) && notificationTime.isBefore(now.plusMinutes(1))) {
                         String notificationKey = fcmToken.getId() + ":" + plan.getId();

@@ -39,6 +39,10 @@ public enum ErrorCode {
     INVITATION_ALREADY_PROCESSED("초대가 이미 처리되었습니다.", HttpStatus.BAD_REQUEST),
     INVITATION_ALREADY_SENT("초대가 이미 존재합니다.", HttpStatus.BAD_REQUEST),
     USER_ALREADY_IN_TEAM("해당 유저는 이미 팀에 속해 있습니다.", HttpStatus.BAD_REQUEST),
+<<<<<<< HEAD
+=======
+    TEAM_NAME_NOT_FOUND("팀이름이 비어 있습니다.", HttpStatus.NOT_FOUND),
+>>>>>>> weekly/11
 
     // friend
     FRIEND_NOT_FOUND("친구가 아닙니다.",HttpStatus.NOT_FOUND),
@@ -53,6 +57,13 @@ public enum ErrorCode {
     // redis
     REDIS_SCAN_FAILED("Redis 키 스캔 중 오류가 발생했습니다.", HttpStatus.SERVICE_UNAVAILABLE),
 
+<<<<<<< HEAD
+=======
+    // fcm
+    TOKEN_NOT_FOUND("해당 FCM 토큰을 찾을 수 없습니다.", HttpStatus.NOT_FOUND),
+
+    // ect
+>>>>>>> weekly/11
     INVALID_PLAN_FORMAT("", HttpStatus.BAD_REQUEST);
 
 

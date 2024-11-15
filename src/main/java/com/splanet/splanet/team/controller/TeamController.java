@@ -1,6 +1,10 @@
 package com.splanet.splanet.team.controller;
 
+<<<<<<< HEAD
 import com.splanet.splanet.team.api.TeamApi;
+=======
+import com.splanet.splanet.team.controller.TeamApi;
+>>>>>>> weekly/11
 import com.splanet.splanet.team.dto.TeamDto;
 import com.splanet.splanet.team.dto.TeamInvitationDto;
 import com.splanet.splanet.team.dto.TeamMemberDto;

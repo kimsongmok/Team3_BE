@@ -14,11 +14,17 @@ public class PlanResponseDto {
     private String description;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
+<<<<<<< HEAD
 
     @JsonIgnore
     private Boolean accessibility;
     @JsonIgnore
     private Boolean isCompleted;
+=======
+    private Boolean accessibility;
+    private Boolean isCompleted;
+
+>>>>>>> weekly/11
     @JsonIgnore
     private LocalDateTime createdAt;
     @JsonIgnore

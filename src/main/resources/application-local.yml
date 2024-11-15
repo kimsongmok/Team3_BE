@@ -10,11 +10,19 @@ spring:
       port: 6379
   security:
     oauth2:
+<<<<<<< HEAD
       redirect-url: http://localhost:5173/oauth2/redirect
+=======
+      redirect-dev-url: http://localhost:5173/oauth2/redirect
+      redirect-prod-url: https://www.splanet.co.kr/oauth2/redirect
+      origin-dev: localhost
+      origin-prod: splanet.co.kr
+>>>>>>> weekly/11
       client:
         registration:
           kakao:
             redirect-uri: http://localhost:8080/login/oauth2/code/kakao
+<<<<<<< HEAD
 #management:
 #  endpoints:
 #    web:
@@ -24,3 +32,10 @@ spring:
 #    metrics:
 #      export:
 #        enabled: true
+=======
+
+logging:
+  level:
+    org.springframework.security: TRACE
+    org.hibernate.engine.internal.StatisticalLoggingSessionEventListener: OFF
+>>>>>>> weekly/11

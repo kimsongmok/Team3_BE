@@ -43,7 +43,11 @@ public interface SubscriptionApi {
     ResponseEntity<String> cancelSubscription(
             @Parameter(description = "JWT 인증으로 전달된 사용자 ID", required = true) @AuthenticationPrincipal Long userId);
 
+<<<<<<< HEAD
     @PostMapping("/payment")
+=======
+    @PostMapping("/subscribe")
+>>>>>>> weekly/11
     @Operation(summary = "구독", description = "사용자가 구독을 구매합니다.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "구독이 성공적으로 구매되었습니다.",

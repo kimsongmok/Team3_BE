@@ -31,6 +31,7 @@ public class CommentService {
 
     // 댓글 작성
     @Transactional
+<<<<<<< HEAD
     public void createComment(Long writerId, Long userId, CommentRequest request) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new BusinessException(ErrorCode.USER_NOT_FOUND));
@@ -41,6 +42,14 @@ public class CommentService {
             throw new BusinessException(ErrorCode.INVALID_COMMENT_ID);
         }
 
+=======
+    public void createComment(Long userId, CommentRequest request) {
+        User user = userRepository.findById(request.userId())
+                .orElseThrow(() -> new BusinessException(ErrorCode.USER_NOT_FOUND));
+        User writer = userRepository.findById(userId)
+                .orElseThrow(() -> new BusinessException(ErrorCode.USER_NOT_FOUND));
+
+>>>>>>> weekly/11
         Comment comment = Comment.builder()
                 .user(user)
                 .writer(writer)

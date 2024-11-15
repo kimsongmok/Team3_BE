@@ -18,37 +18,61 @@ public class GptController implements GptApi {
 
     @Override
     public ResponseEntity<String> callGptForTrialStrong(GptRequest gptRequest, @RequestParam String deviceId) {
+<<<<<<< HEAD
         String response = gptService.generateResponseForStrong(gptRequest.getText(), null, deviceId);
+=======
+        String response = gptService.generateResponse(gptRequest.getText(), null, deviceId, 3);
+>>>>>>> weekly/11
         return ResponseEntity.ok(response);
     }
 
     @Override
     public ResponseEntity<String> callGptForTrialModerate(GptRequest gptRequest, @RequestParam String deviceId) {
+<<<<<<< HEAD
         String response = gptService.generateResponseForModerate(gptRequest.getText(), null, deviceId);
+=======
+        String response = gptService.generateResponse(gptRequest.getText(), null, deviceId, 2);
+>>>>>>> weekly/11
         return ResponseEntity.ok(response);
     }
 
     @Override
     public ResponseEntity<String> callGptForTrialLight(GptRequest gptRequest, @RequestParam String deviceId) {
+<<<<<<< HEAD
         String response = gptService.generateResponseForLight(gptRequest.getText(), null, deviceId);
+=======
+        String response = gptService.generateResponse(gptRequest.getText(), null, deviceId,1);
+>>>>>>> weekly/11
         return ResponseEntity.ok(response);
     }
 
     @Override
     public ResponseEntity<String> callGptForMemberStrong(GptRequest gptRequest, @AuthenticationPrincipal Long userId, @RequestParam String deviceId) {
+<<<<<<< HEAD
         String response = gptService.generateResponseForStrong(gptRequest.getText(), userId, deviceId);
+=======
+        String response = gptService.generateResponse(gptRequest.getText(), userId, deviceId, 3);
+>>>>>>> weekly/11
         return ResponseEntity.ok(response);
     }
 
     @Override
     public ResponseEntity<String> callGptForMemberModerate(GptRequest gptRequest, @AuthenticationPrincipal Long userId, @RequestParam String deviceId) {
+<<<<<<< HEAD
         String response = gptService.generateResponseForModerate(gptRequest.getText(), userId, deviceId);
+=======
+        String response = gptService.generateResponse(gptRequest.getText(), userId, deviceId, 2);
+>>>>>>> weekly/11
         return ResponseEntity.ok(response);
     }
 
     @Override
     public ResponseEntity<String> callGptForMemberLight(GptRequest gptRequest, @AuthenticationPrincipal Long userId, @RequestParam String deviceId) {
+<<<<<<< HEAD
         String response = gptService.generateResponseForLight(gptRequest.getText(), userId, deviceId);
+=======
+        String response = gptService.generateResponse(gptRequest.getText(), userId, deviceId, 1);
+>>>>>>> weekly/11
         return ResponseEntity.ok(response);
     }
 

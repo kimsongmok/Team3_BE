@@ -16,16 +16,20 @@ import org.springframework.web.bind.annotation.*;
 public interface FcmTokenApi {
 
     @PostMapping("/register")
+<<<<<<< HEAD
     @Operation(summary = "FCM 토큰 등록", description = "유저가 FCM 토큰을 등록합니다.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "FCM 토큰이 성공적으로 등록되었습니다."),
             @ApiResponse(responseCode = "404", description = "유저를 찾을 수 없습니다.", content = @Content)
     })
+=======
+>>>>>>> weekly/11
     ResponseEntity<String> registerFcmToken(
             @AuthenticationPrincipal Long userId,
             @RequestBody FcmTokenRequest fcmTokenRequest
     );
 
+<<<<<<< HEAD
     @PutMapping("/update")
     @Operation(summary = "FCM 토큰 설정 수정", description = "알림 설정 및 알림 오프셋을 수정합니다.")
     @ApiResponses(value = {
@@ -45,6 +49,22 @@ public interface FcmTokenApi {
     })
     ResponseEntity<String> deleteFcmToken(
             @AuthenticationPrincipal Long userId,
+=======
+    @PutMapping("/update/notification-enabled")
+    ResponseEntity<String> updateNotificationEnabled(
+            @RequestParam String token,
+            @RequestParam Boolean isNotificationEnabled
+    );
+
+    @PutMapping("/update/notification-offset")
+    ResponseEntity<String> updateNotificationOffset(
+            @RequestParam String token,
+            @RequestParam Integer notificationOffset
+    );
+
+    @DeleteMapping("/delete")
+    ResponseEntity<String> deleteFcmToken(
+>>>>>>> weekly/11
             @RequestParam String token
     );
 }

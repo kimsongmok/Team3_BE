@@ -43,7 +43,12 @@ docker/*.env
 !docker/sample.env
 docker/.DS_Store
 
+<<<<<<< HEAD
 
+=======
+splanet.log
+splanet-test.log
+>>>>>>> weekly/11
 ### log ###
 logs/
 
@@ -55,4 +60,8 @@ splanet-db
 ### env ###
 .env
 /src/main/resources/env.properties
+<<<<<<< HEAD
+=======
+/src/main/resources/env.properties.base64
+>>>>>>> weekly/11
 splanet-firebase.json

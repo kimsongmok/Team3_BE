@@ -25,10 +25,15 @@ class LogServiceTest {
 
   @BeforeEach
   void setUp() throws IOException {
+<<<<<<< HEAD
     // 로그 경로 설정 확인
     assertThat(logPath).isNotNull();
 
     // 로그 파일 존재 여부 확인 및 생성
+=======
+    assertThat(logPath).isNotNull();
+
+>>>>>>> weekly/11
     File logFile = new File(logPath);
     Files.createDirectories(Paths.get(logFile.getParent()));
 
@@ -41,12 +46,44 @@ class LogServiceTest {
 
   @Test
   void 로그인_성공_로그_기록_확인() {
+<<<<<<< HEAD
     // given
     Long userId = 1L;
     String deviceId = "testDeviceId";
 
     // when
     logService.recordLoginLog(userId, deviceId);
+=======
+    Long userId = 1L;
+    String deviceId = "testDeviceId";
+    String requestPath = "/test/login";
+    String headers = "User-Agent: TestAgent, Accept: */*";
+
+    logService.recordLoginLog(userId, deviceId, requestPath, headers);
+
+    File logFile = new File(logPath);
+    assertTrue(logFile.exists(), "로그 파일이 생성되지 않았습니다.");
+
+    try {
+      String content = Files.readString(logFile.toPath());
+      assertThat(content).contains("eventType: LOGIN_SUCCESS", "userId: 1", "deviceId: testDeviceId", "requestPath: /test/login", "headers: User-Agent: TestAgent, Accept: */*");
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  @Test
+  void api_요청_로그_기록_확인() {
+    // given
+    Long userId = 2L;
+    String deviceId = "apiTestDeviceId";
+    String requestPath = "/test/api";
+    String headers = "User-Agent: ApiTestAgent, Accept: application/json";
+    int statusCode = 200;
+
+    // when
+    logService.recordApiRequestLog(userId, deviceId, requestPath, headers, statusCode);
+>>>>>>> weekly/11
 
     // then
     File logFile = new File(logPath);
@@ -55,7 +92,18 @@ class LogServiceTest {
     // 로그 파일 내용 확인
     try {
       String content = Files.readString(logFile.toPath());
+<<<<<<< HEAD
       assertThat(content).contains("eventType: LOGIN_SUCCESS", "userId: 1", "deviceId: testDeviceId");
+=======
+      assertThat(content).contains(
+              "eventType: API_REQUEST",
+              "userId: 2",
+              "deviceId: apiTestDeviceId",
+              "requestPath: /test/api",
+              "headers: User-Agent: ApiTestAgent, Accept: application/json",
+              "statusCode: 200"
+      );
+>>>>>>> weekly/11
     } catch (IOException e) {
       e.printStackTrace();
     }

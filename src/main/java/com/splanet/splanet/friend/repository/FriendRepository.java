@@ -9,10 +9,17 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+<<<<<<< HEAD
 
 @Repository
 public interface FriendRepository extends JpaRepository<Friend, Long> {
     List<Friend> findByUserId(Long userId);
+=======
+@Repository
+public interface FriendRepository extends JpaRepository<Friend, Long> {
+    List<Friend> findByUserId(Long userId);
+
+>>>>>>> weekly/11
     boolean existsByUserIdAndFriendId(Long userId, Long friendId);
 
     @Modifying

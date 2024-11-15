@@ -34,12 +34,15 @@ spring:
             scope: profile_nickname, profile_image, account_email
             client-name: Kakao
 
+<<<<<<< HEAD
 logging:
   level:
     org.springframework.security: TRACE
     org.hibernate.engine.internal.StatisticalLoggingSessionEventListener: OFF
 
 
+=======
+>>>>>>> weekly/11
 springdoc:
   swagger-ui:
     path: /swagger

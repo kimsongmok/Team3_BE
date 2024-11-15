@@ -7,6 +7,14 @@ on:
       - develop
       - 'weekly/**'
 
+<<<<<<< HEAD
+=======
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+>>>>>>> weekly/11
 jobs:
   build-and-test:
     runs-on: ubuntu-22.04
@@ -36,6 +44,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
+<<<<<<< HEAD
 #      - name: Cache Gradle dependencies
 #        uses: actions/cache@v3
 #        with:
@@ -47,6 +56,8 @@ jobs:
 #            gradle-${{ runner.os }}-
 
 
+=======
+>>>>>>> weekly/11
       - name: Decode env.properties from GitHub Secrets
         run: |
           echo "${{ secrets.ENV_FILE }}" | base64 --decode > ./src/main/resources/env.properties
@@ -84,7 +95,43 @@ jobs:
           fi
 
       - name: Build with Gradle
+<<<<<<< HEAD
         run: ./gradlew build -Dspring.profiles.active=test
 
       - name: Run Tests
         run: ./gradlew test -Dspring.profiles.active=test
+=======
+        run: ./gradlew clean build -Dspring.profiles.active=test
+
+      - name: Run Tests
+        run: ./gradlew test -Dspring.profiles.active=test
+
+      - name: Generate JaCoCo Coverage Report
+        run: ./gradlew jacocoTestReport
+
+      - name: Generate Coverage Badge and Summary
+        uses: cicirello/jacoco-badge-generator@v2
+        with:
+          jacoco-csv-file: 'build/reports/jacoco/test/jacocoTestReport.csv'
+          badges-directory: 'badges'
+          generate-branches-badge: true
+          generate-summary: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Display Coverage Summary JSON
+        run: |
+          cat badges/coverage-summary.json
+
+      - name: Extract Coverage Information
+        if: ${{ github.event_name == 'pull_request' }}
+        run: |
+          COVERAGE=$(jq '.coverage' badges/coverage-summary.json)
+          BRANCH_COVERAGE=$(jq '.branches' badges/coverage-summary.json)
+          FORMATTED_COVERAGE=$(printf "%.2f" $COVERAGE)
+          FORMATTED_BRANCH_COVERAGE=$(printf "%.2f" $BRANCH_COVERAGE)
+          curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+               -X POST \
+               -d "{\"body\": \"### 코드 커버리지\n- Coverage: ${FORMATTED_COVERAGE}%\n- Branches: ${FORMATTED_BRANCH_COVERAGE}%\n\"}" \
+               "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/comments"
+>>>>>>> weekly/11

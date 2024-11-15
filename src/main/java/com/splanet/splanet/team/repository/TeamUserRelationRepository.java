@@ -25,5 +25,9 @@ public interface TeamUserRelationRepository extends JpaRepository<TeamUserRelati
   @Query("SELECT t FROM TeamUserRelation t WHERE t.team.id = :teamId AND t.user.id = :userId")
   Optional<TeamUserRelation> findByTeamIdAndUserId(@Param("teamId") Long teamId, @Param("userId") Long userId);
   int countByTeam(Team team);
+<<<<<<< HEAD
+=======
+  void deleteAllByTeam(Team team);
+>>>>>>> weekly/11
 
 }

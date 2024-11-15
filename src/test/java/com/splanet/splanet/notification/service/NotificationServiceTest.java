@@ -87,6 +87,7 @@ class NotificationServiceTest {
             e.printStackTrace();
         }
     }
+<<<<<<< HEAD
 
     @Test
     void 테스트_알림_전송_성공() {
@@ -127,4 +128,6 @@ class NotificationServiceTest {
             e.printStackTrace();
         }
     }
+=======
+>>>>>>> weekly/11
 }

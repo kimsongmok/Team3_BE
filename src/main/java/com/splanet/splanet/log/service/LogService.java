@@ -19,10 +19,40 @@ public class LogService {
   }
 
   // 로그인 성공 시 로그 기록
+<<<<<<< HEAD
   public void recordLoginLog(Long userId, String deviceId) {
     String timestamp = getCurrentKstTimestamp();
     String logMessage = String.format("eventType: LOGIN_SUCCESS, userId: %s, deviceId: %s, timestamp: %s",
             userId, deviceId, timestamp);
+=======
+  public void recordLoginLog(Long userId, String deviceId, String requestPath, String headers) {
+    String timestamp = getCurrentKstTimestamp();
+    String logMessage = String.format("eventType: LOGIN_SUCCESS, userId: %s, deviceId: %s, timestamp: %s, requestPath: %s, headers: %s",
+            userId, deviceId, timestamp, requestPath, headers);
+    writeLog(logMessage);
+  }
+
+  // API 요청 로그 기록
+  public void recordApiRequestLog(Long userId, String deviceId, String requestPath, String headers, int statusCode) {
+    String timestamp = getCurrentKstTimestamp();
+    String logMessage = String.format("eventType: API_REQUEST, userId: %s, deviceId: %s, timestamp: %s, requestPath: %s, headers: %s, statusCode: %d",
+            userId, deviceId, timestamp, requestPath, headers, statusCode);
+    writeLog(logMessage);
+  }
+
+  // 에러 로그 기록
+  public void recordErrorLog(String errorMessage, Exception exception) {
+    String timestamp = getCurrentKstTimestamp();
+    String logMessage = String.format("eventType: ERROR, timestamp: %s, message: %s, exception: %s",
+            timestamp, errorMessage, exception.toString());
+    writeLog(logMessage);
+  }
+
+  public void recordErrorLog(String errorMessage) {
+    String timestamp = getCurrentKstTimestamp();
+    String logMessage = String.format("eventType: ERROR, timestamp: %s, message: %s",
+            timestamp, errorMessage);
+>>>>>>> weekly/11
     writeLog(logMessage);
   }
 

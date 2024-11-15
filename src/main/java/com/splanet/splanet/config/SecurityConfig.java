@@ -42,6 +42,10 @@ public class SecurityConfig {
     http
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
+<<<<<<< HEAD
+=======
+                    .requestMatchers("/error").permitAll()
+>>>>>>> weekly/11
                     .anyRequest().permitAll()
             )
             .oauth2Login(oauth2 -> oauth2
@@ -75,7 +79,11 @@ public class SecurityConfig {
   }
 
   private OAuth2AuthenticationSuccessHandler oAuth2AuthenticationSuccessHandler() {
+<<<<<<< HEAD
     return new OAuth2AuthenticationSuccessHandler(jwtTokenProvider, userRepository, tokenService, oAuth2Properties);
+=======
+    return new OAuth2AuthenticationSuccessHandler(jwtTokenProvider, userRepository, tokenService, oAuth2Properties, logService);
+>>>>>>> weekly/11
   }
 
   private JwtAuthenticationFilter jwtAuthenticationFilter() {

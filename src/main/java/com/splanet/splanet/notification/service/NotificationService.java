@@ -12,7 +12,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+<<<<<<< HEAD
 import java.util.List;
+=======
+import java.time.format.DateTimeFormatter;
+>>>>>>> weekly/11
 
 @Slf4j
 @Service
@@ -29,6 +33,7 @@ public class NotificationService {
     }
 
     public void sendNotification(FcmToken fcmToken, Plan plan) {
+<<<<<<< HEAD
         String title = "곧 시작하는 플랜: " + plan.getTitle();
         String body = "곧 시작하는 플랜이 있어요! " + plan.getDescription();
 
@@ -41,22 +46,52 @@ public class NotificationService {
                 .putData("title", plan.getDescription())
                 .putData("startDate", plan.getStartDate().toString())
                 .build();
+=======
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH시 mm분");
+
+        String nickname = plan.getUser().getNickname();
+
+        String startTime = plan.getStartDate().toLocalTime().format(timeFormatter);
+        String endTime = plan.getEndDate().toLocalTime().format(timeFormatter);
+
+        String title = "🗓️ " + nickname + "님! " + plan.getTitle() + " 시간이에요! ";
+        String body = startTime + " - " + endTime + " \n" +
+                (plan.getDescription() != null ? plan.getDescription() : " ");
+
+        Notification notification = new Notification(title, body);
+
+        String clickActionUrl = "https://www.splanet.co.kr";
+
+        Message message = Message.builder().setToken(fcmToken.getToken())
+                .setNotification(notification)
+                .putData("click_action", clickActionUrl)
+                .putData("title", plan.getTitle())
+                .putData("description", plan.getDescription())
+                .putData("startDate", plan.getStartDate().toString())
+                .build();
+
+>>>>>>> weekly/11
         try {
             String response = firebaseMessaging.send(message);
             log.info("알림을 정상적으로 전송하였습니다. : {}", response);
 
+<<<<<<< HEAD
             // 알림 전송 기록 저장
             NotificationLog logEntry = NotificationLog.builder()
                     .fcmToken(fcmToken)
                     .plan(plan)
                     .sentAt(LocalDateTime.now())
                     .build();
+=======
+            NotificationLog logEntry = NotificationLog.builder().fcmToken(fcmToken).plan(plan).sentAt(LocalDateTime.now()).build();
+>>>>>>> weekly/11
             notificationLogRepository.save(logEntry);
 
         } catch (Exception e) {
             log.error("FCM 알림 전송 실패 ", e);
         }
     }
+<<<<<<< HEAD
 
     // 알림 테스트를 위한 메소드 (추후 삭제)
     public void sendTestNotification(Long userId) {
@@ -78,4 +113,6 @@ public class NotificationService {
             }
         }
     }
+=======
+>>>>>>> weekly/11
 }

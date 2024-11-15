@@ -87,12 +87,26 @@ public class FriendService {
     // 친구 삭제(취소)하기
     @Transactional
     public ResponseEntity<Map<String, String>> unfriend(Long friendId, Long userId) {
+<<<<<<< HEAD
+=======
+        // 내 친구 목록에 존재하는지
+>>>>>>> weekly/11
         if (!friendRepository.existsByUserIdAndFriendId(userId, friendId)) {
             throw new BusinessException(ErrorCode.FRIEND_NOT_FOUND);
         }
 
+<<<<<<< HEAD
         friendRepository.deleteByRequesterIdAndReceiverId(userId, friendId);
 
+=======
+        // 내가 내 친구 목록에서 친구 삭제
+        friendRepository.deleteByRequesterIdAndReceiverId(userId, friendId);
+
+        // 친구의 친구 목록에서도 나를 삭제
+        friendRepository.deleteByRequesterIdAndReceiverId(friendId, userId);
+
+        // 그 친구 관련 친구 요청도 있으면, 삭제
+>>>>>>> weekly/11
         List<FriendRequest> pendingRequests = friendRequestRepository.findPendingRequestsByReceiverId(userId, friendId, FriendRequest.Status.PENDING);
         for (FriendRequest request : pendingRequests) {
             friendRequestRepository.delete(request);
